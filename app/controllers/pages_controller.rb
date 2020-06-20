@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   def profile
     @user = User.find(params[:id])
     @followers = Relationship.where(followed_id: @user.id)
+    @rel = @followers.find_by(follower_id: current_user.id)
   end
 
   def dashboard
@@ -23,7 +24,7 @@ class PagesController < ApplicationController
     other_user = User.find(params[:id])
     @rel = Relationship.new(follower_id: current_user.id, followed_id: other_user.id)
     @rel.save
-    redirect_to dashboard_path
+    redirect_to profile_path(other_user)
   end
 
   def cars
