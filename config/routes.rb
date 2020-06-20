@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get '/profile/:id', to: 'pages#profile', as: 'profile'
   get '/dashboard', to: 'pages#dashboard'
+  post '/profile/:id', to: 'pages#follow', as: 'new_follow'
   get '/allfavorites', to: 'pages#favorites', as: 'allfavs'
   get '/allcars', to: 'pages#cars', as: 'allcars'
   resources :cars do

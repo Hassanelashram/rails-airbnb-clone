@@ -67,7 +67,7 @@
         <img src="https://image.flaticon.com/icons/svg/847/847969.svg" class="avatar" alt="">
         <% end %>
         <hr>
-        <p><%= @car.user.name %></p>
+        <p><%= link_to @car.user.name, profile_path(@car.user) %></p>
         <hr>
         <%= simple_form_for([@car, @booking]) do |f| %>
           <input type="text" placeholder="Start date - End date" name='startdate' id="start-date" class="form-control flatpickr mb-3" required>
@@ -84,8 +84,6 @@
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 <hr>
-
-
 
 
 

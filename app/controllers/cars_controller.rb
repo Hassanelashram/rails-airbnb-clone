@@ -20,9 +20,14 @@ class CarsController < ApplicationController
     #     flash[:warning] = 'No city with that name'
     #   end
     # end
+    respond_to do |format|
+      format.html
+      format.json { render json: { cars: @cars } }
+    end
   end
 
   def show
+    @cars = Car.count
     @booking = Booking.new
     @favorite = Favorite.find_by(car_id: @car.id)
     @markers = [{
@@ -31,6 +36,10 @@ class CarsController < ApplicationController
         #infoWindow: render_to_string(partial: "info_window", locals: { car: @car })
         # js lowercamelCase the name of the key
       }]
+      respond_to do |format|
+      format.html
+      format.json { render json: { cars: @cars } }
+    end
   end
 
   def edit

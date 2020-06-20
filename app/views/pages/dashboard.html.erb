@@ -55,6 +55,22 @@
     </div>
   </div>
   <hr>
+
+<div class="row">
+  <div class="col-3">
+  <div class="card">
+    <h2><%= current_user.relationships.count %> Following</h2>
+  </div>
+</div>
+
+<div class="col-3">
+  <div class="card">
+    <h2><%= @followers.count %> Followers</h2>
+  </div>
+</div>
+</div>
+
+
  <div class="row">
 
 
