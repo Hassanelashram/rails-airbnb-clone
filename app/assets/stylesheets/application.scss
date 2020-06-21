@@ -134,4 +134,30 @@ i {
   background-color: white;
   width: 100%;
   list-style: none;
+  a {
+    color: black;
+  }
+  a:hover {
+    color: darkgray;
+  }
+}
+
+.card-small-thumb {
+  height: 120px;
+  width: 400px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(53, 53, 53, 0.301);
+  display: flex;
+  padding: 0;
+  margin-top: 10px;
+  .card-thumb {
+    background-size: cover;
+    background-position: center;
+    width: 110px;
+    height: 100%;
+  }
+  .subtitle {
+    line-height: 1rem;
+  }
 }

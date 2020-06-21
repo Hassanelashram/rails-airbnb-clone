@@ -25,6 +25,7 @@ class PagesController < ApplicationController
     @rel = Relationship.new(follower_id: current_user.id, followed_id: other_user.id)
     @rel.save
     redirect_to profile_path(other_user)
+    flash[:success] = "You followed #{other_user.name}"
   end
 
   def cars

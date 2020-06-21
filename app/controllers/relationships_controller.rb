@@ -8,5 +8,6 @@ class RelationshipsController < ApplicationController
     @rel = Relationship.find(params[:id])
     @rel.destroy
     redirect_to profile_path(@rel.followed_id)
+    flash[:danger] = "Unfollwed successfully"
   end
 end

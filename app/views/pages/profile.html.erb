@@ -1,5 +1,10 @@
-<div class="container">
-  <div class="col-sm-12 col-lg-4 profile-box text-center">
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<div class="container my-4">
+  <div class="row">
+    <div class="col-sm-12 col-lg-4 profile-box text-center">
     <% if @user.photo.attached? %>
       <%= cl_image_tag @user.photo.key, crop: :thumb, gravity: :face, width: 100, height: 100, class: 'rounded-circle my-2' %>
     <% else %>
@@ -11,14 +16,30 @@
     <hr>
     <p>Bookings made: <%= @user.bookings.count %></p>
     <hr>
-
-     <%= link_to 'Follow', new_follow_path, method: :post, class: 'btn btn-danger' unless @rel.present?  %>
+    <p><%= @followers.count %>  <%= "follower".pluralize(@followers.count) %></p>
+    <hr>
+     <%= link_to "Follow", new_follow_path, method: :post, class: 'btn btn-danger' unless @rel.present?  %>
      <%= link_to 'unfollow', relationship_path(@rel.id), method: :delete, class: 'btn btn-danger' if @rel.present?  %>
-
-    <%= link_to 'Message', profile_path(@user), class: 'btn btn-danger'  %>
+     <%= link_to 'Message', profile_path(@user), class: 'btn btn-danger'  %>
+  </div>
+  <div class="col-sm-12 col-lg ml-5">
+    <h2 class="text-left"><%= @user.name %>'s cars</h2>
+    <div class="row">
+      <% @user.cars.first(3).each do |c| %>
+      <%= link_to c do %>
+      <div class="card-small-thumb col-12">
+        <div style="background-image: url(<%= c.photos.first.service_url %>);" class="card-thumb rounded">
+        </div>
+        <div class="card-details p-3">
+          <p class="subtitle"><%= c.brand %> · <%= c.name %>  </p>
+          <p class="subtitle"><%= c.transmission %> · <%= c.seats %> seaters</p>
+          <p class="subtitle"> <strong>$<%= c.price %>/Day</strong> </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
   </div>
 
-  <div class="col-sm-12 col-lg">
-
+  </div>
   </div>
 </div>
