@@ -3,6 +3,12 @@ class PagesController < ApplicationController
     @cars = Car.all.limit(6)
   end
 
+  def feed
+    @followings = Relationship.where(follower_id: current_user.id)
+    @ids = find_all_users_followed(@followings)
+    @users = User.find(@ids)
+  end
+
   def profile
     @user = User.find(params[:id])
     @followers = Relationship.where(followed_id: @user.id)
@@ -31,6 +37,14 @@ class PagesController < ApplicationController
   def cars
   end
 private
+
+  def find_all_users_followed(record)
+    ids = []
+    record.each do |instance|
+      ids << instance.followed_id
+    end
+    return ids
+  end
 
   def total_spent_counter
     total = []

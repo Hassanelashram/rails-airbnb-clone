@@ -1,0 +1,30 @@
+
+<div class="container">
+  <div class="row">
+    <h2 class="col-12">Cars Based on people you follow</h2>
+<% @users.each do |u| %>
+  <% u.cars.each do |c| %>
+    <div class="col-sm-12 col-md-6 col-lg-4 my-2 card-col">
+    <%= link_to c do %>
+      <div class="card-car">
+       <div style="background-image: url(<%= c.photos.first.service_url %>);" class="card-top">
+        </div>
+        <div class="card-bottom">
+        <h5 class="ml-1 card-title"><%= c.name %> <strong>·</strong> <%= c.city.name%></h5>
+        <div class="card-details-holder">
+          <p class="card-details">
+          <img width=30px src="https://image.flaticon.com/icons/svg/2061/2061870.svg" alt="">
+          <%= c.transmission %> <strong>·</strong>
+          <img width=30px src="https://image.flaticon.com/icons/svg/2917/2917696.svg" alt="">
+          <%= c.seats %>
+          </p>
+          <p class="m-1 card-details"> <strong>$<%= c.price %>/Day</strong> </p>
+        </div>
+        </div>
+     </div>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>
+  </div>
+</div>
