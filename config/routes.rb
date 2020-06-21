@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get '/feed', to: 'pages#feed', as: 'feed'
   get '/profile/:id', to: 'pages#profile', as: 'profile'
   get '/dashboard', to: 'pages#dashboard'
   post '/profile/:id', to: 'pages#follow', as: 'new_follow'
